@@ -133,6 +133,10 @@ snapshot.create = function(snapshot_path, plugins)
 end
 
 local function fetch(plugin)
+  print(plugin.install_path)
+  if not util.is_directory(plugin.install_path) then
+    return result.err(fmt("plugin directory not found at '%s'", plugin.install_path))
+  end
   local git = require 'packer.plugin_types.git'
   local opts = { capture_output = true, cwd = plugin.install_path, options = { env = git.job_env } }
 

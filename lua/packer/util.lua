@@ -165,4 +165,9 @@ util.float = function(opts)
   return true, win, buf
 end
 
+util.is_directory = function(path)
+  local stat = vim.loop.fs_stat(path)
+  return stat and stat.type == 'directory' or false
+end
+
 return util
